@@ -15,17 +15,14 @@ async function loadCategories() {
             document.getElementById("divCategories").innerHTML = data;
         } else {
 			// Parse the JSON from the response
-            data = await response.json();
-            /*const categoryList = data.map(category => {
-                return `<li><a href="#category-${category.categoryId}">${category.categoryName}</a></li>`;
-            }).join('');*/
+            const jsonData = await response.json();
+			//data = JSON.parse(json)
             var list = "";
-
-            data.map(category => list = list+
-            		"<li><a href=#>" +
-            		category.categoryName + 
-            		"</a></li>");
+            jsonData.categoryBeans.forEach(function(categoryBean){
+				list = list + "<li><a href=#>" + categoryBean.categoryName + "</a></li>"
+            });
             document.getElementById("divCategories").innerHTML = list;
+            document.getElementById("a_GetAllAvailableCategories").href = jsonData._links.self.href;
         }
     } catch (error) {
         // Handle any errors
@@ -41,6 +38,6 @@ async function loadCategories() {
 <body onload="loadCategories()">
 	<H1>Online Milk Store</H1>
 	<div id="divCategories"></div>
-	
+	<a id="a_GetAllAvailableCategories">Get All Available Categories</a>
 </body>
 </html>
