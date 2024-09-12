@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Online Milk Store</title>
+<script type="text/javascript">
+async function loadCategories() {
+    try {
+        // Fetch data from the API
+        const response = await fetch('http://localhost:9001/categories');
+		var data;
+        // Check if the response is successful
+        if (response.status == 204) {
+            data = 'Categories Not Available';
+            document.getElementById("divCategories").innerHTML = data;
+        } else {
+			// Parse the JSON from the response
+            data = await response.json();
+            /*const categoryList = data.map(category => {
+                return `<li><a href="#category-${category.categoryId}">${category.categoryName}</a></li>`;
+            }).join('');*/
+            var list = "";
+
+            data.map(category => list = list+
+            		"<li><a href=#>" +
+            		category.categoryName + 
+            		"</a></li>");
+            document.getElementById("divCategories").innerHTML = list;
+        }
+    } catch (error) {
+        // Handle any errors
+        console.log('There was a problem with the fetch operation:', error);
+    }
+	
+}
+	/*loadCategories().then(
+		data => document.getElementById("divCategories").innerHTML = data
+	);*/
+</script>
+</head>
+<body onload="loadCategories()">
+	<H1>Online Milk Store</H1>
+	<div id="divCategories"></div>
+	
+</body>
+</html>
