@@ -5,14 +5,12 @@
 <title>Online Store</title>
 <script type="text/javascript" src="../js/categories.js"></script>
 </head>
-<body onload="set_HATEOAS_links(); setElements();">
+<body onload="set_HATEOAS_links();">
 	<H1>Online Store</H1>
-	<div id="divCategories"></div>
-		<H3>Categories:</H3>
-		<p style="margin-top: -38px; margin-left: 115px;">
-			<a id="a_GetAllAvailableCategories" onclick="getAllAvailableCategories(this)">Get All Available Categories</a>
-		</p>
-		<label id="lblCategoriesNotAvailable" style="display: none;">Categories not available</label>
-		<div id="div_Content"></div>
+	<hr>
+	<label style="padding-top: 1px;">Categories</label>
+	<hr style="margin-top: 5px;">
+	<label id="lblCategoriesNotAvailable" style="display: none;">Categories not available</label>
+	<div id="div_Content"></div>
 </body>
 </html>
