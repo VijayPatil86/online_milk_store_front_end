@@ -22,7 +22,7 @@ function getAllAvailableCategories(anchor) {
 		if(xhttp.status == 200){
 			var response = JSON.parse(this.responseText);
 			var categories = response.categoryBeans;
-			document.getElementById("div_CategoriesList").innerHTML = "";
+			document.getElementById("div_Content").innerHTML = "";
 			document.getElementById("lblCategoriesNotAvailable").style.display = "none";
 			var html_table = "<table>";
 			for(var index=0; index < categories.length; index++){
@@ -35,10 +35,10 @@ function getAllAvailableCategories(anchor) {
 				html_table = html_table + "</tr>"
 			}
 			html_table = html_table + "</table>";
-			document.getElementById("div_CategoriesList").innerHTML = html_table;
+			document.getElementById("div_Content").innerHTML = html_table;
 		}
 	    if(xhttp.status == 204) {
-	    	document.getElementById("div_CategoriesList").innerHTML = "";
+	    	document.getElementById("div_Content").innerHTML = "";
 	    	document.getElementById("lblCategoriesNotAvailable").style.display = "block";
 	    }
 	}
