@@ -4,17 +4,23 @@ function set_HATEOAS_links() {
 	xhttp.send();
 	xhttp.onload = function() {
 		var response = JSON.parse(this.responseText);
-	    document.getElementById("a_GetAllAvailableCategories").href = 
-	    	response._links.link_getAllAvailableCategories.href;
+		displayCategories(response._links.link_getAllAvailableCategories.href);
 	}
 }
-function setElements() {
-	document.getElementById("a_GetAllAvailableCategories").addEventListener("click", function(event){
-		event.preventDefault()
-	});
+
+function getImageTagForCategoryType(categoryName) {
+	switch(categoryName) {
+		case "Dairy":  {
+			return "<a href='..\\html\\dairy-products.html'>" + 
+				"<img src='..\\images\\Dairy.jpg\' title='Dairy Products' style='cursor: pointer;'>" + 
+				"<br>" +
+				"<label style='padding-left: 110px; cursor:pointer; color:blue;'>Dairy Products</label>" +
+				"</a>";
+		}
+	}
 }
-function getAllAvailableCategories(anchor) {
-	var link_getAllAvailableCategories = anchor.href;
+
+function displayCategories(link_getAllAvailableCategories) {
 	var xhttp = new XMLHttpRequest();
 	xhttp.open("GET", link_getAllAvailableCategories);  
 	xhttp.send();
@@ -41,14 +47,5 @@ function getAllAvailableCategories(anchor) {
 	    	document.getElementById("div_Content").innerHTML = "";
 	    	document.getElementById("lblCategoriesNotAvailable").style.display = "block";
 	    }
-	}
-}
-
-function getImageTagForCategoryType(categoryName) {
-	switch(categoryName) {
-		case "Dairy":  {
-			return "<img src='..\\images\\Dairy.jpg\' title='Dairy Products' style='cursor: pointer;'>" + "<br>" +
-				"<label style='padding-left: 110px; cursor:pointer; color:blue;'>Dairy Products</label>";
-		}
 	}
 }
