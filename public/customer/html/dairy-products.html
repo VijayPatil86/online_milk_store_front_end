@@ -5,7 +5,7 @@
 <title>Online Store</title>
 <script type="text/javascript" src="../js/dairy-products.js"></script>
 </head>
-<body>
+<body onload="set_HATEOAS_links();">
 	<H1>Online Store</H1>
 	<hr>
 	<a href="categories.html" style="padding-top: 1px; text-decoration: none;">
@@ -15,5 +15,7 @@
 		> Dairy Products
 	</label>
 	<hr style="margin-top: 5px;">
+	<label id="lblDairyProductsNotAvailable" style="display: none;">Dairy Products not available</label>
+	<div id="div_Content"></div>
 </body>
 </html>
