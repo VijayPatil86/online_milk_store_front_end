@@ -6,6 +6,9 @@ function set_HATEOAS_links() {
 		var response = JSON.parse(this.responseText);
 		displayCategories(response._links.link_getAllAvailableCategories.href);
 	}
+	xhttp.onerror = function() {
+		alert("Network Error: Could not send the request. ");
+	}
 }
 
 function getImageTagForCategoryType(categoryName) {
@@ -47,5 +50,8 @@ function displayCategories(link_getAllAvailableCategories) {
 	    	document.getElementById("div_Content").innerHTML = "";
 	    	document.getElementById("lblCategoriesNotAvailable").style.display = "block";
 	    }
+	}
+	xhttp.onerror = function() {
+		alert("Network Error: Could not send the request. ");
 	}
 }
