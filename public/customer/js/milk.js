@@ -17,18 +17,19 @@ function displayMilkBrands(link_getAllAvailableMilkBrands) {
 	xhttp.send();
 	xhttp.onload = function() {
 		if(xhttp.status == 200){
-			var dairyProductsContainerData = JSON.parse(this.responseText);
-			var dairyProductBeans = dairyProductsContainerData.dairyProductBeans;
+			var milkBrandsContainerData = JSON.parse(this.responseText);
+			var milkBrandBeans = milkBrandsContainerData.milkBrandBeans;
 
 			document.getElementById("div_Content").innerHTML = "";
-			document.getElementById("lblDairyProductsNotAvailable").style.display = "none";
+			document.getElementById("lblMilkBrandsNotAvailable").style.display = "none";
 
 			var imageAddedCount = 1;
 
 			var html_table = "<table>";
-			for(var index=0; index < dairyProductBeans.length; index++){
-				var dairyProductBean = dairyProductBeans[index];
-				var dairyProductName = dairyProductBean.dairyProductName;
+			for(var index=0; index < milkBrandBeans.length; index++){
+				var milkBrandBean = milkBrandBeans[index];
+				var milkBrandName = milkBrandBean.milkBrandName;
+				var packaging = milkBrandBean.packaging;
 
 				if(imageAddedCount == 1){
 					html_table = html_table + "<tr>";
@@ -38,7 +39,11 @@ function displayMilkBrands(link_getAllAvailableMilkBrands) {
 					imageAddedCount = 1;
 				}
 				++imageAddedCount;
-				html_table = html_table + "<td>" + getImageTagForDairyProductType(dairyProductName) + "</td>";
+				if(index == 0)
+					getImageTagForMilkBrandType(milkBrandName, packaging)
+				html_table = html_table + "<td style='padding-left: 50px; padding-top: 20px; padding-right: 50px; padding-bottom: 13px;'>" +
+					getImageTagForMilkBrandType(milkBrandName, packaging) + "</td>";
+				//html_table = html_table + "<td>" + milkBrandName + "---" + packaging + "</td>";
 			}
 			html_table = html_table + "</table>";
 			document.getElementById("div_Content").innerHTML = html_table;
@@ -53,49 +58,9 @@ function displayMilkBrands(link_getAllAvailableMilkBrands) {
 	}
 }
 
-function getImageTagForDairyProductType(dairyProductName) {
-	switch(dairyProductName) {
-		case "Butter":  {
-			return "<a href='..\\html\\butter.html'>" +
-				"<img src='..\\images\\Butter.jpg\' title='Butter' style='cursor: pointer;'>" +
-				"<br>" +
-				"<label style='padding-left: 110px; cursor:pointer; color:blue;'>Butter</label>" +
-				"</a>";
-		}
-		case "Milk":  {
-			return "<a href='..\\html\\milk.html'>" +
-				"<img src='..\\images\\Milk.jpg\' title='Milk' style='cursor: pointer;'>" +
-				"<br>" +
-				"<label style='padding-left: 30px; cursor:pointer; color:blue;'>Milk</label>" +
-				"</a>";
-		}
-		case "Buttermilk":  {
-			return "<a href='..\\html\\Buttermilk.html'>" +
-				"<img src='..\\images\\Buttermilk.jpg\' title='Buttermilk' style='cursor: pointer;'>" +
-				"<br>" +
-				"<label style='padding-left: 52px; cursor:pointer; color:blue;'>Buttermilk</label>" +
-				"</a>";
-		}
-		case "Cheese":  {
-			return "<a href='..\\html\\cheese.html'>" +
-				"<img src='..\\images\\Cheese.jpg\' title='Cheese' style='cursor: pointer;'>" +
-				"<br>" +
-				"<label style='padding-left: 75px; cursor:pointer; color:blue;'>Cheese</label>" +
-				"</a>";
-		}
-		case "Ghee":  {
-			return "<a href='..\\html\\ghee.html'>" +
-				"<img src='..\\images\\Ghee.jpg\' title='Ghee' style='cursor: pointer;'>" +
-				"<br>" +
-				"<label style='padding-left: 100px; cursor:pointer; color:blue;'>Ghee</label>" +
-				"</a>";
-		}
-		case "Curd":  {
-			return "<a href='..\\html\\curd.html'>" +
-				"<img src='..\\images\\Curd.jpg\' title='Curd' style='cursor: pointer;'>" +
-				"<br>" +
-				"<label style='padding-left: 77px; cursor:pointer; color:blue;'>Curd</label>" +
-				"</a>";
-		}
-	}
+function getImageTagForMilkBrandType(milkBrandName, packaging) {
+	var imagePath = "..\\images\\milk-brands\\" + milkBrandName + "\\" + packaging + ".JPG";
+	return "<img src='" + imagePath + "' title='" + milkBrandName + " " + packaging + "' style='cursor: pointer; height: 200px;'>" +
+			"<br>" +
+			"<label style='cursor:pointer; color:blue;'>" + milkBrandName + " " + packaging + "</label>";
 }
