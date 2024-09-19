@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Online Store - Admin</title>
+<script type="text/javascript" src="../js/categories.js"></script>
+</head>
+<body onload="set_HATEOAS_links();">
+	<H1>Online Store - Admin</H1>
+	<hr>
+	<label style="padding-top: 1px;">Categories</label>
+	<hr style="margin-top: 5px;">
+	<label id="lblCategoriesNotAvailable" style="display: none;">Categories not available</label>
+	<br>
+	<label id="lblAddCategory" style="color: blue; cursor: pointer;">Add Category</label>
+	<br><br>
+	<div id="div_formAddCategory">
+		<form onsubmit="return handleSubmit();">
+			<table border="0">
+				<tr>
+					<td style="width: 145px;">
+						<label id="lblCategoryName">Category Name:</label>
+					</td>
+					<td>
+						<input type="text" id="txtCategoryName" tabindex="1">
+					</td>
+					<td>
+						<label id="lblErrorMessage_CategoryNameRequired" style="color: red; display: none;">
+							Category Name is required
+						</label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<br>
+						<label id="lblCategoryAvailable">Category Available:</label>
+					</td>
+					<td>
+						<br>
+						<input type="radio" id="radioCategoryAvailableYes" name="radioCategoryAvailable" value="Y" tabindex="2">Yes
+						<input type="radio" id="radioCategoryAvailableNo" name="radioCategoryAvailable" value="N">No
+					</td>
+					<td>
+						<br>
+						<label id="lblErrorMessage_CategoryAvailableRequired" style="color: red; display: none;">
+							Category Available is required
+						</label>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<br>
+						<input type="submit" value="Create Category">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div id="div_Content"></div>
+</body>
+</html>
