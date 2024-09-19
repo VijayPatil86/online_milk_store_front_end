@@ -11,19 +11,25 @@
 	<label style="padding-top: 1px;">Categories</label>
 	<hr style="margin-top: 5px;">
 	<br>
-	<label id="lblAddCategory" style="color: blue;">Add Category</label>
-	<br><br>
 	<div id="div_formAddCategory">
 		<form onsubmit="return handleSubmit();">
 			<table border="0">
 				<tr>
+					<td colspan="2" align="center">
+						<label id="lblAddCategory" style="color: blue;">Add Category</label>
+					</td>
+				</tr>
+				<tr>
 					<td style="width: 145px;">
+						<br>
 						<label id="lblCategoryName">Category Name:</label>
 					</td>
 					<td>
+						<br>
 						<input type="text" id="txtCategoryName" tabindex="1">
 					</td>
 					<td>
+						<br>
 						<label id="lblErrorMessage_CategoryNameRequired" style="color: red; display: none;">
 							Category Name is required
 						</label>
