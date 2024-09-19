@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Online Store - Admin</title>
+<script type="text/javascript" src="../js/dairy-products.js"></script>
+</head>
+<body onload="set_HATEOAS_links();">
+	<H1>Online Store - Admin</H1>
+	<hr>
+	<a href="categories.html" style="padding-top: 1px; text-decoration: none;">
+		Categories
+	</a> 
+	<label style="padding-top: 1px;"> 
+		> Dairy Products
+	</label>
+	<hr style="margin-top: 5px;">
+	<br>
+	<div id="div_formAddDairyProduct">
+		<form onsubmit="return handleSubmit();">
+			<table border="0">
+				<tr>
+					<td colspan="2" align="center">
+						<label id="lblAddDairyProduct" style="color: blue;">Add Dairy Product</label>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 145px;">
+						<br>
+						<label id="lblDairyProductName">Dairy Product Name:</label>
+					</td>
+					<td>
+						<br>
+						<input type="text" id="txtDairyProductName" tabindex="1">
+					</td>
+					<td>
+						<br>
+						<label id="lblErrorMessage_DairyProducNametRequired" style="color: red; display: none;">
+							Dairy Product Name is required
+						</label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<br>
+						<label id="lblDairyProductAvailable">Dairy Product Available:</label>
+					</td>
+					<td>
+						<br>
+						<input type="radio" id="radioDairyProductAvailableYes" name="radioDairyProductAvailable" value="Y" tabindex="2">Yes
+						<input type="radio" id="radioDairyProductAvailableNo" name="radioDairyProductAvailable" value="N">No
+					</td>
+					<td>
+						<br>
+						<label id="lblErrorMessage_DairyProductAvailableRequired" style="color: red; display: none;">
+							Dairy Product Available is required
+						</label>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<br>
+						<input type="submit" value="Save Dairy Product">
+						<label id="lblGetDairyProducts" style="padding-left: 20px; color:blue; cursor: pointer" 
+								onclick="displayDairyProducts(this);" data="">
+							Get Dairy Products
+						</label>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<br>
+	<label id="lblDairyProductsNotAvailable" style="display: none;">Dairy Products not available</label>
+	<div id="div_Content"></div>
+</body>
+</html>
