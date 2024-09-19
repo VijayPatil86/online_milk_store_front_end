@@ -4,7 +4,7 @@ function set_HATEOAS_links() {
 	xhttp.send();
 	xhttp.onload = function() {
 		var response = JSON.parse(this.responseText);
-		displayCategories(response._links.link_getAllAvailableCategories.href);
+		document.getElementById("lblGetCategories").data = response._links.link_getAllAvailableCategories.href;
 	}
 	xhttp.onerror = function() {
 		alert("Network Error: Could not send the request. ");
@@ -23,7 +23,8 @@ function getImageTagForCategoryType(categoryName) {
 	}
 }
 
-function displayCategories(link_getAllAvailableCategories) {
+function displayCategories(lblGetCategories) {
+	var link_getAllAvailableCategories = lblGetCategories.data;
 	var xhttp = new XMLHttpRequest();
 	xhttp.open("GET", link_getAllAvailableCategories);
 	xhttp.send();
