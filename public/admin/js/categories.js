@@ -103,6 +103,8 @@ function call_Api_Create_Category(categoryName, categoryAvailable) {
 	xhttp.send(JSON.stringify(data));
 	xhttp.onload = function() {
 		if(xhttp.status == 200){	// success
+			var response = JSON.parse(this.responseText);
+			sessionStorage.setItem(response.categoryBean.categoryName, response.categoryBean.categoryId);
 			alert("Category " + categoryName + " created.");
 		}
 		if(xhttp.status == 409){	// conflict - already exists
