@@ -10,9 +10,8 @@
 	<hr>
 	<label style="padding-top: 1px;">Categories</label>
 	<hr style="margin-top: 5px;">
-	<label id="lblCategoriesNotAvailable" style="display: none;">Categories not available</label>
 	<br>
-	<label id="lblAddCategory" style="color: blue; cursor: pointer;">Add Category</label>
+	<label id="lblAddCategory" style="color: blue;">Add Category</label>
 	<br><br>
 	<div id="div_formAddCategory">
 		<form onsubmit="return handleSubmit();">
@@ -51,11 +50,16 @@
 					<td colspan="2" align="center">
 						<br>
 						<input type="submit" value="Create Category">
+						<label id="lblGetCategories" style="padding-left: 20px; color:blue; cursor: pointer" onclick="displayCategories(this);" data="">
+							Get Categories
+						</label>
 					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
+	<br>
+	<label id="lblCategoriesNotAvailable" style="display: none;">Categories not available</label>
 	<div id="div_Content"></div>
 </body>
 </html>
