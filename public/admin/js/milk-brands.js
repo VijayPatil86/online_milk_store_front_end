@@ -21,24 +21,26 @@ function displayMilkBrands(lblGetMilkBrands) {
 	xhttp.send();
 	xhttp.onload = function() {
 		if(xhttp.status == 200){
-			var response = JSON.parse(this.responseText);
-
-			/*var dairyProducts = response.dairyProductBeans;
 			document.getElementById("div_Content").innerHTML = "";
-			document.getElementById("lblDairyProductsNotAvailable").style.display = "none";
-			var html_table = "<table>";
-			for(var index=0; index < dairyProducts.length; index++){
-				var dairyProduct = dairyProducts[index];
-				var dairyProductName = dairyProduct.dairyProductName;
-
+			document.getElementById("lblMilkBrandsNotAvailable").style.display = "none";
+			var html_table = "<table border='1' style='border: 1px solid black;border-collapse: collapse;'>";
+			html_table = html_table + "<tr>";
+			html_table = html_table + "<td align='center' style='width:200px;'>" + 'Milk Brand' + "</td>";
+			html_table = html_table + "<td align='center' style='width:200px;'>" + 'Packaging' + "</td>";
+			html_table = html_table + "<td align='center' style='width:200px;'>" + 'Available' + "</td>";
+			html_table = html_table + "</tr>";
+			var response = JSON.parse(this.responseText);
+			var milkBrands = response.milkBrandBeans;
+			for(var index=0; index < milkBrands.length; index++){
+				var milkBrand = milkBrands[index];
 				html_table = html_table + "<tr>";
-				html_table = html_table + "<td align='center'>" +
-					getImageTagForDairyProductType(dairyProductName) + "</td>";
-				//var link_getCategoryById = category._links.link_getCategoryById.href;
-				html_table = html_table + "</tr>"
+				html_table = html_table + "<td align='center' style='width:200px;'>" + milkBrand.milkBrandName + "</td>";
+				html_table = html_table + "<td align='center' style='width:200px;'>" + milkBrand.packaging + "</td>";
+				html_table = html_table + "<td align='center' style='width:200px;'>" + milkBrand.milkBrandAvailable + "</td>";
+				html_table = html_table + "</tr>";
 			}
 			html_table = html_table + "</table>";
-			document.getElementById("div_Content").innerHTML = html_table;*/
+			document.getElementById("div_Content").innerHTML = html_table;
 		}
 	    if(xhttp.status == 204) {
 			document.getElementById("div_Content").innerHTML = "";
