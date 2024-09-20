@@ -11,18 +11,6 @@ function set_HATEOAS_links() {
 	}
 }
 
-function getImageTagForCategoryType(categoryName) {
-	switch(categoryName) {
-		case "Dairy":  {
-			return "<a href='..\\html\\dairy-products.html'>" +
-				"<img src='..\\images\\Dairy.jpg\' title='Dairy Products' style='cursor: pointer;'>" +
-				"<br>" +
-				"<label style='padding-left: 110px; cursor:pointer; color:blue;'>Dairy Products</label>" +
-				"</a>";
-		}
-	}
-}
-
 function displayCategories(lblGetCategories) {
 	var link_getAllAvailableCategories = lblGetCategories.data;
 	var xhttp = new XMLHttpRequest();
@@ -34,15 +22,20 @@ function displayCategories(lblGetCategories) {
 			var categories = response.categoryBeans;
 			document.getElementById("div_Content").innerHTML = "";
 			document.getElementById("lblCategoriesNotAvailable").style.display = "none";
-			var html_table = "<table>";
+			var html_table = "<table border='1' style='border: 1px solid black;border-collapse: collapse;'>";
+			html_table = html_table + "<tr>";
+			html_table = html_table + "<td align='center' style='width:200px;'>" + 'Category' + "</td>";
+			html_table = html_table + "<td align='center' style='width:200px;'>" + 'Available' + "</td>";
+			html_table = html_table + "</tr>";
 			for(var index=0; index < categories.length; index++){
 				var category = categories[index];
 				sessionStorage.setItem(category.categoryName, category.categoryId);
-				var categoryName = category.categoryName;
-
 				html_table = html_table + "<tr>";
-				html_table = html_table + "<td>" + getImageTagForCategoryType(categoryName) + "</td>";
-				//var link_getCategoryById = category._links.link_getCategoryById.href;
+				html_table = html_table + "<td align='center' style='width:200px;'>" + category.categoryName + "</td>";
+				html_table = html_table + "<td align='center' style='width:200px;'>" + category.categoryAvailable + "</td>";
+				html_table = html_table + "<td align='center' style='width:200px;'>" +
+					"<a href='..\\html\\dairy-products.html'>" + "Add Products" + "</a>"
+					+ "</td>";
 				html_table = html_table + "</tr>"
 			}
 			html_table = html_table + "</table>";
@@ -104,7 +97,6 @@ function call_Api_Create_Category(categoryName, categoryAvailable) {
 	xhttp.send(JSON.stringify(data));
 	xhttp.onload = function() {
 		if(xhttp.status == 200){	// success
-			var response = JSON.parse(this.responseText);
 			alert("Category " + categoryName + " created.");
 		}
 		if(xhttp.status == 409){	// conflict - already exists
