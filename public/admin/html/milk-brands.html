@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Online Store - Admin</title>
+<script type="text/javascript" src="../js/milk-brands.js"></script>
+</head>
+<body onload="set_HATEOAS_links();">
+	<H1>Online Store - Admin</H1>
+	<hr>
+	<a href="categories.html" style="padding-top: 1px; text-decoration: none;">
+		Categories
+	</a>
+	<label style="padding-top: 1px;"> > </label>
+	<a href="dairy-products.html" style="padding-top: 1px; text-decoration: none;">
+		Dairy Products
+	</a>
+	<label style="padding-top: 1px;">
+		> Milk Brands
+	</label>
+	<hr style="margin-top: 5px;">
+	<br>
+	<div id="div_formAddMilkBrand">
+		<form onsubmit="return handleSubmit();">
+			<table border="0">
+				<tr>
+					<td colspan="2" align="center">
+						<label id="lblAddMilkBrand" style="color: blue;">Add Milk Brand</label>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 145px;">
+						<br>
+						<label id="lblMilkBrandName">Milk Brand Name:</label>
+					</td>
+					<td>
+						<br>
+						<input type="text" id="txtMilkBrandName" tabindex="1">
+					</td>
+					<td>
+						<br>
+						<label id="lblErrorMessage_MilkBrandNametRequired" style="color: red; display: none;">
+							Milk Brand Name is required
+						</label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<br>
+						<label id="lblMilkPackaging">Packaging: </label>
+					</td>
+					<td>
+						<br>
+						<input type="text" id="txtMilkPackaging" tabindex="2">
+					</td>
+					<td>
+						<br>
+						<label id="lblErrorMessage_MilkPackagingRequired" style="color: red; display: none;">
+							Milk Packaging is required
+						</label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<br>
+						<label id="lblMilkBrandAvailable">Milk Brand Available:</label>
+					</td>
+					<td>
+						<br>
+						<input type="radio" id="radioMilkBrandAvailableYes" name="radioMilkBrandAvailable" value="Y" tabindex="3">Yes
+						<input type="radio" id="radioMilkBrandAvailableNo" name="radioMilkBrandAvailable" value="N">No
+					</td>
+					<td>
+						<br>
+						<label id="lblErrorMessage_MilkBrandAvailableRequired" style="color: red; display: none;">
+							Milk Brand Available is required
+						</label>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<br>
+						<input type="submit" value="Save Milk Brand" tabindex="4">
+						<label id="lblGetMilkBrands" style="padding-left: 20px; color:blue; cursor: pointer"
+								onclick="displayMilkBrands(this);" tabindex="5" data="">
+							Get Milk Brands
+						</label>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<br>
+	<label id="lblMilkBrandsNotAvailable" style="display: none;">Milk Brands not available</label>
+	<div id="div_Content"></div>
+</body>
+</html>
