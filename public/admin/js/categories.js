@@ -37,6 +37,7 @@ function displayCategories(lblGetCategories) {
 			var html_table = "<table>";
 			for(var index=0; index < categories.length; index++){
 				var category = categories[index];
+				sessionStorage.setItem(category.categoryName, category.categoryId);
 				var categoryName = category.categoryName;
 
 				html_table = html_table + "<tr>";
@@ -104,7 +105,6 @@ function call_Api_Create_Category(categoryName, categoryAvailable) {
 	xhttp.onload = function() {
 		if(xhttp.status == 200){	// success
 			var response = JSON.parse(this.responseText);
-			sessionStorage.setItem(response.categoryBean.categoryName, response.categoryBean.categoryId);
 			alert("Category " + categoryName + " created.");
 		}
 		if(xhttp.status == 409){	// conflict - already exists
