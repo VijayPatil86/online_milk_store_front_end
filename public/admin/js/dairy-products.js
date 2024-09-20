@@ -1,5 +1,5 @@
 /** global variables **/
-var dairy_CategoryId = sessionStorage.getItem('Dairy');
+var category_Dairy_Id = sessionStorage.getItem('Dairy');
 
 function set_HATEOAS_links(){
 	var xhttp = new XMLHttpRequest();
@@ -29,7 +29,7 @@ function displayDairyProducts(lblGetDairyProducts) {
 			for(var index=0; index < dairyProducts.length; index++){
 				var dairyProduct = dairyProducts[index];
 				var dairyProductName = dairyProduct.dairyProductName;
-
+				sessionStorage.setItem(dairyProduct.dairyProductName, dairyProduct.dairyProductId);
 				html_table = html_table + "<tr>";
 				html_table = html_table + "<td align='center'>" + getImageTagForDairyProductType(dairyProductName) + "</td>";
 				//var link_getCategoryById = category._links.link_getCategoryById.href;
@@ -50,9 +50,11 @@ function displayDairyProducts(lblGetDairyProducts) {
 
 function getImageTagForDairyProductType(dairyProductName) {
 	var imagePath = "..\\images\\" + dairyProductName + ".JPG";
-	return "<img src='" + imagePath + "' title='" + dairyProductName + " " + "' style='cursor: pointer; height: 200px;'>" +
-			"<br>" +
-			"<label style='cursor:pointer; color:blue;'>" + dairyProductName + " " + "</label>";
+	return "<a href='..\\html\\milk-brands.html'>" +
+		"<img src='" + imagePath + "' title='" + dairyProductName + " " + "' style='cursor: pointer; height: 200px;'>" +
+		"<br>" +
+		"<label style='cursor:pointer; color:blue;'>" + dairyProductName + " " + "</label>" +
+		"</a>";
 }
 
 function handleSubmit() {
@@ -96,13 +98,12 @@ function call_Api_Create_DairyProduct(dairyProductName, dairyProductAvailable) {
 	    dairyProductAvailable: dairyProductAvailable
 	};
 	var xhttp = new XMLHttpRequest();
-	xhttp.open("POST", "http://localhost:9001/dairy-products/" + dairy_CategoryId);
+	xhttp.open("POST", "http://localhost:9001/dairy-products/" + category_Dairy_Id);
 	xhttp.setRequestHeader("Content-Type", "application/json");
 	xhttp.send(JSON.stringify(data));
 	xhttp.onload = function() {
 		if(xhttp.status == 200){	// success
 			var response = JSON.parse(this.responseText);
-			sessionStorage.setItem(response.dairyProductBean.dairyProductName, response.dairyProductBean.dairyProductId);
 			alert("Dairy Product " + dairyProductName + " created.");
 		}
 		if(xhttp.status == 409){	// conflict - already exists
