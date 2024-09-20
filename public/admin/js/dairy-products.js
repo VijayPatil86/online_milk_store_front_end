@@ -25,14 +25,20 @@ function displayDairyProducts(lblGetDairyProducts) {
 			var dairyProducts = response.dairyProductBeans;
 			document.getElementById("div_Content").innerHTML = "";
 			document.getElementById("lblDairyProductsNotAvailable").style.display = "none";
-			var html_table = "<table>";
+			var html_table = "<table border='1' style='border: 1px solid black;border-collapse: collapse;'>";
+			html_table = html_table + "<tr>";
+			html_table = html_table + "<td align='center' style='width:200px;'>" + 'Product' + "</td>";
+			html_table = html_table + "<td align='center' style='width:200px;'>" + 'Available' + "</td>";
+			html_table = html_table + "</tr>";
 			for(var index=0; index < dairyProducts.length; index++){
 				var dairyProduct = dairyProducts[index];
-				var dairyProductName = dairyProduct.dairyProductName;
 				sessionStorage.setItem(dairyProduct.dairyProductName, dairyProduct.dairyProductId);
 				html_table = html_table + "<tr>";
-				html_table = html_table + "<td align='center'>" + getImageTagForDairyProductType(dairyProductName) + "</td>";
-				//var link_getCategoryById = category._links.link_getCategoryById.href;
+				html_table = html_table + "<td align='center' style='width:200px;'>" + dairyProduct.dairyProductName + "</td>";
+				html_table = html_table + "<td align='center' style='width:200px;'>" + dairyProduct.dairyProductAvailable + "</td>";
+				html_table = html_table + "<td align='center' style='width:200px;'>" +
+					"<a href='..\\html\\milk-brands.html'>" + "Add Brands" + "</a>"
+					+ "</td>";
 				html_table = html_table + "</tr>"
 			}
 			html_table = html_table + "</table>";
@@ -46,15 +52,6 @@ function displayDairyProducts(lblGetDairyProducts) {
 	xhttp.onerror = function() {
 		alert("Network Error: Could not send the request. ");
 	}
-}
-
-function getImageTagForDairyProductType(dairyProductName) {
-	var imagePath = "..\\images\\" + dairyProductName + ".JPG";
-	return "<a href='..\\html\\milk-brands.html'>" +
-		"<img src='" + imagePath + "' title='" + dairyProductName + " " + "' style='cursor: pointer; height: 200px;'>" +
-		"<br>" +
-		"<label style='cursor:pointer; color:blue;'>" + dairyProductName + " " + "</label>" +
-		"</a>";
 }
 
 function handleSubmit() {
