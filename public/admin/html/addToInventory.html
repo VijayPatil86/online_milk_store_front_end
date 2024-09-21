@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Online Store - Admin</title>
+<script type="text/javascript" src="../js/addToInventory.js"></script>
+</head>
+<body onload="setFieldsValues();">
+	<label id="lbl"></label>
+	<H1>Online Store - Admin</H1>
+	<div id="div_formAddMilkBrand">
+		<form onsubmit="return handleSubmit();">
+			<table border="0">
+				<tr>
+					<td colspan="4" align="center">
+						<label id="lblAddMilkBrandToInventory" style="color: blue;">Add to Inventory</label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<br>
+						<label id="lblMilkBrandName">Milk Brand Name:</label>
+					</td>
+					<td>
+						<br>
+						<input type="text" id="txtMilkBrandName" disabled="disabled">
+					</td>
+					<td>
+						<br>
+						<label id="lblMilkPackaging">Packaging: </label>
+					</td>
+					<td>
+						<br>
+						<input type="text" id="txtMilkPackaging" disabled="disabled">
+					</td>
+				</tr>
+				<tr>
+				</tr>
+				<tr>
+					<td>
+						<br>
+						<label id="lblMilkBrandAvailable">Milk Brand Available:</label>
+					</td>
+					<td>
+						<br>
+						<label id="lblMilkBrandAvailableValue"></label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<br>
+						<label id="lblMilkBrandPurchasePrice">Purchase Price:</label>
+					</td>
+					<td>
+						<br>
+						<input type="text" id="txtMilkBrandPurchasePrice">
+					</td>
+					<td>
+						<br>
+						<label id="lblMilkBrandPurchaseQuantity">Purchase Quantity:</label>
+					</td>
+					<td>
+						<br>
+						<input type="text" id="txtMilkBrandPurchaseQuantity">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<br>
+						<label id="lblMilkBrandSellPrice">Sell Price:</label>
+					</td>
+					<td>
+						<br>
+						<input type="text" id="txtMilkBrandSellPrice">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="4" align="center">
+						<br>
+						<input type="button" value="Add to Inventory" onclick="addToInventory();">
+						<input type="button" value="Close" onclick="closeWindow();" style="margin-left: 50px;">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>
