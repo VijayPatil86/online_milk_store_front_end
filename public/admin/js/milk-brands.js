@@ -33,10 +33,16 @@ function displayMilkBrands(lblGetMilkBrands) {
 			var milkBrands = response.milkBrandBeans;
 			for(var index=0; index < milkBrands.length; index++){
 				var milkBrand = milkBrands[index];
+				var lblOnClickMethod = "openAddInventoryWindow('" + milkBrand.milkBrandName + "', '" + milkBrand.packaging +
+					"', '" + milkBrand.milkBrandAvailable + "', '" + milkBrand.milkBrandId + "');";
+				var lblAddToInventory = "<label style='color:blue; cursor:pointer;' onclick=\"" + lblOnClickMethod + "\">" +
+				                        "Add to Inventory </label>";
+
 				html_table = html_table + "<tr>";
 				html_table = html_table + "<td align='center' style='width:200px;'>" + milkBrand.milkBrandName + "</td>";
 				html_table = html_table + "<td align='center' style='width:200px;'>" + milkBrand.packaging + "</td>";
 				html_table = html_table + "<td align='center' style='width:200px;'>" + milkBrand.milkBrandAvailable + "</td>";
+				html_table = html_table + "<td align='center' style='width:200px;'>" + lblAddToInventory + "</td>";
 				html_table = html_table + "</tr>";
 			}
 			html_table = html_table + "</table>";
@@ -117,11 +123,18 @@ function call_Api_Create_MilkBrand(milkBrandName, milkPackaging, milkBrandAvaila
 	xhttp.send(JSON.stringify(data));
 	xhttp.onload = function() {
 		if(xhttp.status == 200){	// success
-			var response = JSON.parse(this.responseText);
 			alert("Milk Brand " + milkBrandName + ", packaging " + milkPackaging + " created.");
 		}
 		if(xhttp.status == 409){	// conflict - already exists
 			alert("Milk Brand " + milkBrandName + ", packaging " + milkPackaging + " already exists.");
 		}
 	}
+}
+
+function openAddInventoryWindow(milkBrandName, packaging, milkBrandAvailable, milkBrandId) {
+	var addInventoryWindow = window.open("..\\html\\addToInventory.html", "", "width=800,height=800");
+	localStorage.setItem("milkBrandNameToAddToInventory", milkBrandName);
+	localStorage.setItem("packagingToAddToInventory", packaging);
+	localStorage.setItem("milkBrandAvailableToAddToInventory", milkBrandAvailable);
+	localStorage.setItem("milkBrandIdToAddToInventory", milkBrandId);
 }
