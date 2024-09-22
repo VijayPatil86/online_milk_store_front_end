@@ -19,31 +19,33 @@ function displayMilkBrands(link_getAllAvailableMilkBrands) {
 		if(xhttp.status == 200){
 			var milkBrandsContainerData = JSON.parse(this.responseText);
 			var milkBrandBeans = milkBrandsContainerData.milkBrandBeans;
-
 			document.getElementById("div_Content").innerHTML = "";
 			document.getElementById("lblMilkBrandsNotAvailable").style.display = "none";
 
-			var imageAddedCount = 1;
+			var tableCellCount = 1;
 
 			var html_table = "<table>";
 			for(var index=0; index < milkBrandBeans.length; index++){
 				var milkBrandBean = milkBrandBeans[index];
+				var milkBrandId = milkBrandBean.milkBrandId;
 				var milkBrandName = milkBrandBean.milkBrandName;
 				var packaging = milkBrandBean.packaging;
+				var price = milkBrandBean.milkBrandInventoryBean.currentPurchasePrice;
 
-				if(imageAddedCount == 1){
+				if(tableCellCount == 1){
 					html_table = html_table + "<tr>";
 				}
-				if(imageAddedCount == 4){
+				if(tableCellCount == 4){
 					html_table = html_table + "</tr>";
 					imageAddedCount = 1;
 				}
-				++imageAddedCount;
-				if(index == 0)
-					getImageTagForMilkBrandType(milkBrandName, packaging)
-				html_table = html_table + "<td style='padding-left: 50px; padding-top: 20px; padding-right: 50px; padding-bottom: 13px;'>" +
-					getImageTagForMilkBrandType(milkBrandName, packaging) + "</td>";
-				//html_table = html_table + "<td>" + milkBrandName + "---" + packaging + "</td>";
+				++tableCellCount;
+				html_table = html_table + "<td style='padding-left: 50px; padding-top: 20px; padding-right: 50px; padding-bottom: 13px;'>";
+				html_table = html_table + milkBrandName + " " + packaging;
+				html_table = html_table + "<br><label style='padding-left: 45px;'>₹ " + price + "</label>"
+				html_table = html_table + "<br><label style='padding-left: 20px;'>Qty:</label>";
+				html_table = html_table + "<input id='txtMilkBrandId_" + milkBrandId + "' style='width:30px;'>";
+				html_table = html_table + "</td>";
 			}
 			html_table = html_table + "</table>";
 			document.getElementById("div_Content").innerHTML = html_table;
@@ -56,11 +58,4 @@ function displayMilkBrands(link_getAllAvailableMilkBrands) {
 	xhttp.onerror = function() {
 		alert("Network Error: Could not send the request. ");
 	}
-}
-
-function getImageTagForMilkBrandType(milkBrandName, packaging) {
-	var imagePath = "..\\images\\milk-brands\\" + milkBrandName + "\\" + packaging + ".JPG";
-	return "<img src='" + imagePath + "' title='" + milkBrandName + " " + packaging + "' style='cursor: pointer; height: 200px;'>" +
-			"<br>" +
-			"<label style='cursor:pointer; color:blue;'>" + milkBrandName + " " + packaging + "</label>";
 }

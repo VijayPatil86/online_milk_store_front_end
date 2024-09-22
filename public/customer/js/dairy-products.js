@@ -23,22 +23,26 @@ function displayDairyProducts(link_getAllAvailableDairyProducts) {
 			document.getElementById("div_Content").innerHTML = "";
 			document.getElementById("lblDairyProductsNotAvailable").style.display = "none";
 
-			var imageAddedCount = 1;
+			var tableCellCount = 1;
 
 			var html_table = "<table>";
 			for(var index=0; index < dairyProductBeans.length; index++){
 				var dairyProductBean = dairyProductBeans[index];
 				var dairyProductName = dairyProductBean.dairyProductName;
 
-				if(imageAddedCount == 1){
+				if(tableCellCount == 1){
 					html_table = html_table + "<tr>";
 				}
-				if(imageAddedCount == 4){
+				if(tableCellCount == 4){
 					html_table = html_table + "</tr>";
-					imageAddedCount = 1;
+					tableCellCount = 1;
 				}
-				++imageAddedCount;
-				html_table = html_table + "<td>" + getImageTagForDairyProductType(dairyProductName) + "</td>";
+				++tableCellCount;
+				html_table = html_table + "<td>";
+				html_table = html_table + "<a href='..\\html\\milk.html'>";
+				html_table = html_table + dairyProductName;
+				html_table = html_table + "</a>";
+				html_table = html_table + "</td>";
 			}
 			html_table = html_table + "</table>";
 			document.getElementById("div_Content").innerHTML = html_table;

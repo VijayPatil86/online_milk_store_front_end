@@ -11,18 +11,6 @@ function set_HATEOAS_links() {
 	}
 }
 
-function getImageTagForCategoryType(categoryName) {
-	switch(categoryName) {
-		case "Dairy":  {
-			return "<a href='..\\html\\dairy-products.html'>" + 
-				"<img src='..\\images\\Dairy.jpg\' title='Dairy Products' style='cursor: pointer;'>" + 
-				"<br>" +
-				"<label style='padding-left: 110px; cursor:pointer; color:blue;'>Dairy Products</label>" +
-				"</a>";
-		}
-	}
-}
-
 function displayCategories(link_getAllAvailableCategories) {
 	var xhttp = new XMLHttpRequest();
 	xhttp.open("GET", link_getAllAvailableCategories);  
@@ -39,8 +27,11 @@ function displayCategories(link_getAllAvailableCategories) {
 				var categoryName = category.categoryName;
 				
 				html_table = html_table + "<tr>";
-				html_table = html_table + "<td>" + getImageTagForCategoryType(categoryName) + "</td>";
-				//var link_getCategoryById = category._links.link_getCategoryById.href;
+				html_table = html_table + "<td>";
+				html_table = html_table + "<a href='..\\html\\dairy-products.html'>";
+				html_table = html_table + categoryName;
+				html_table = html_table + "</a>";
+				html_table = html_table + "</td>";
 				html_table = html_table + "</tr>"
 			}
 			html_table = html_table + "</table>";
