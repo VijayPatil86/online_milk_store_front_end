@@ -1,6 +1,6 @@
 function set_HATEOAS_links() {
 	var xhttp = new XMLHttpRequest();
-	xhttp.open("GET", "http://localhost:9001/categories/get_HATEOAS_links");
+	xhttp.open("GET", "http://localhost:9003/oms/categories/get_HATEOAS_links");
 	xhttp.send();
 	xhttp.onload = function() {
 		var response = JSON.parse(this.responseText);
