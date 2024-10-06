@@ -46,3 +46,40 @@ function loadCartItemsDetails() {
 function closeWindow() {
 	window.close();
 }
+
+function placeOrder() {
+	var cartData = localStorage.getItem("cartMapMilkBrandIdQuantity");
+	var productIdQuantity = "";
+	if (cartData) {
+		var entries = JSON.parse(cartData);
+		var cartMapMilkBrandIdQuantity = new Map(entries);
+		cartMapMilkBrandIdQuantity.forEach((quantity, milkBrandId) => {
+			productIdQuantity += milkBrandId + "=" + quantity + "&";
+		});
+		if (productIdQuantity.endsWith('&')) {
+		    productIdQuantity = productIdQuantity.slice(0, -1); // Remove the last character
+		}
+	}
+	var upiId = document.getElementById('txtUPIId').value;
+	var paymentRemark = document.getElementById('txtPaymentRemark').value;
+
+	var data = {
+		productIdQty: productIdQuantity,
+		paymentDetails: {
+			paymentMethod: {
+				type: "upi",
+				upiID: upiId,
+				paymentDescription: paymentRemark
+			}
+		}
+	};
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("POST", "http://localhost:9011/order-service/order");
+	xhttp.setRequestHeader("Content-Type", "application/json");
+	xhttp.send(JSON.stringify(data));
+	xhttp.onload = function() {
+		if(xhttp.status == 200){	// success
+			alert("Order placed...");
+		}
+	}
+}
