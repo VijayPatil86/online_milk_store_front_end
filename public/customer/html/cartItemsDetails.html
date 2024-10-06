@@ -9,7 +9,33 @@
 	<H3>Cart Details</H3>
 	<div id="div_Content"></div>
 	<br>
-	<input type="button" onclick="closeWindow();" value="Close">
-	<input type="button" onclick="window.location.href='payment.html';" value="Proceed to Payment" style="margin-left: 25px;">
+	<H3>Payment</H3>
+	<table>
+		<tr>
+			<td>
+				<label>UPI ID:</label>
+			</td>
+			<td>
+				<input type="text" id="txtUPIId">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<br>
+				<label>Remark:</label>
+			</td>
+			<td>
+				<br>
+				<input type="text" id="txtPaymentRemark">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+				<br>
+				<button id="btnPlaceOrder" style="height: 25px; width: 130px; margin-left: 17px;" onclick="placeOrder();">Place Order</button>
+				<input type="button" style="height: 25px; width: 130px; margin-left: 17px;" onclick="closeWindow();" value="Cancel">
+			</td>
+		</tr>
+	</table>
 </body>
 </html>
